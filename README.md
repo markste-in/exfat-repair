@@ -1,4 +1,4 @@
-# Repair a drive with a 'dirty' exfat system
+# Repair a broken exfat system with a 'dirty' flag
 
 #### Table of Contents  
 - [Background and Troubleshooting](#Background-and-Troubleshooting)
