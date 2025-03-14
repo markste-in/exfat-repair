@@ -107,11 +107,17 @@ This means the filesystem was not properly unmounted or was in the middle of ope
 
 So how do we fix that? The easy solution is to overwrite the dirty flag and set it back to zero. For that I wrote another small script that does it for you.
 
+- Firstly write the boot region (if not done already) to a file and don't manipulate the disk directly
+
+```bash
+sudo dd if=/dev/sdb2 of=boot_region_backup.bin bs=512 count=16
+```
+- Secondly fix the dirty flag in the boot region
 ```bash
 python3 fix_dirty_flag.py boot_region_backup.bin boot_region_dirty_fixed.bin 
 ```
 
-Lastely we just need to write back the boot region to the disk
+- Lastely we just need to write back the boot region to the disk
 
 ```bash
 sudo dd if=boot_region_dirty_fixed.bin of=/dev/sdb2 bs=512 count=1
